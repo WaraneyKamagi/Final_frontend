@@ -51,7 +51,7 @@ const LandingPage = () => {
   }, [])
 
   return (
-    <div className="flex flex-1 flex-col gap-16 bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 pb-16 pt-10">
+    <div className="flex flex-1 flex-col gap-16 bg-linear-to-b from-slate-950 via-slate-950 to-slate-900 pb-16 pt-10">
       <section className="mx-auto max-w-6xl px-4">
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="space-y-8">
@@ -90,12 +90,12 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-indigo-500/30 bg-gradient-to-br from-indigo-600/10 to-slate-950/60 p-8 shadow-2xl shadow-indigo-500/20">
-            <div className="absolute inset-4 rounded-[2rem] bg-gradient-to-br from-indigo-500/20 to-purple-500/10 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-indigo-500/30 bg-linear-to-br from-indigo-600/10 to-slate-950/60 p-8 shadow-2xl shadow-indigo-500/20">
+            <div className="absolute inset-4 rounded-4xl bg-linear-to-br from-indigo-500/20 to-purple-500/10 blur-3xl" />
             <div className="relative flex flex-col items-center gap-6 text-white">
               <div className="relative flex items-center justify-center">
                 <div className="absolute h-64 w-64 rounded-full border border-indigo-500/40 animate-ping opacity-60" />
-                <div className="h-64 w-64 rounded-[2rem] bg-gradient-to-br from-indigo-600/40 to-violet-700/30 p-6 shadow-inner shadow-black/40 backdrop-blur">
+                <div className="h-64 w-64 rounded-4xl bg-linear-to-br from-indigo-600/40 to-violet-700/30 p-6 shadow-inner shadow-black/40 backdrop-blur">
                   <img
                     src={hokLogo}
                     alt="Honor of Kings neon crest"

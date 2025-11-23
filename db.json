@@ -20,6 +20,20 @@
       "email": "marcel@joki.com",
       "password": "marcel123",
       "role": "user"
+    },
+    {
+      "id": "3c77",
+      "name": "Test User",
+      "email": "test1763915342104@example.com",
+      "password": "password123",
+      "role": "user"
+    },
+    {
+      "id": "b1be",
+      "name": "metuvenom",
+      "email": "mv@gmail.com",
+      "password": "123456",
+      "role": "user"
     }
   ],
   "services": [
@@ -170,6 +184,29 @@
       "totalPrice": 975000,
       "createdAt": "2025-11-23T14:15:23.737Z",
       "updatedAt": "2025-11-23T14:15:56.120Z"
+    },
+    {
+      "id": "059a",
+      "status": "Diproses",
+      "paymentMethod": "QRIS",
+      "paymentReference": "",
+      "userId": "b1be",
+      "serviceId": "1",
+      "serviceName": "Push Rank",
+      "gameAccount": {
+        "username": "metuvenom",
+        "password": "123456",
+        "currentRank": "Legend",
+        "targetRank": "Legend",
+        "currentStar": 100,
+        "targetStar": 1000
+      },
+      "target": "Rank Legend (Bintang 1000)",
+      "tier": "express",
+      "notes": "carikan lover juga\n",
+      "totalPrice": 13912500,
+      "createdAt": "2025-11-23T16:31:05.228Z",
+      "updatedAt": "2025-11-23T16:32:07.122Z"
     }
   ]
 }
