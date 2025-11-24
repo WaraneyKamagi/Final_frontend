@@ -1,34 +1,113 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import Navbar from './components/Layout/Navbar'
+import Footer from './components/Layout/Footer'
+import LandingPage from './pages/LandingPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import ServicesPage from './pages/ServicesPage'
+import OrderPage from './pages/OrderPage'
+import PaymentPage from './pages/PaymentPage'
+import OrdersPage from './pages/OrdersPage'
+import AdminDashboard from './pages/AdminDashboard'
+import { useAuth } from './context/AuthContext'
+
+const PrivateRoute = ({ children }) => {
+  const { isAuthenticated, initializing } = useAuth()
+  const location = useLocation()
+
+  if (initializing) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center text-slate-200">
+        Memuat...
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <Navigate
+        to="/login"
+        state={{ from: location.pathname }}
+        replace
+      />
+    )
+  }
+
+  return children
+}
+
+const AdminRoute = ({ children }) => {
+  const { user, isAuthenticated, initializing } = useAuth()
+  const location = useLocation()
+
+  if (initializing) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center text-slate-200">
+        Memuat...
+      </div>
+    )
+  }
+
+  if (!isAuthenticated || user?.role !== 'admin') {
+    return (
+      <Navigate
+        to="/"
+        state={{ from: location.pathname }}
+        replace
+      />
+    )
+  }
+
+  return children
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex min-h-screen flex-col bg-slate-950 text-white">
+      <Navbar />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/order/:serviceId"
+            element={
+              <PrivateRoute>
+                <OrderPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/payment/:orderId"
+            element={
+              <PrivateRoute>
+                <PaymentPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <PrivateRoute>
+                <OrdersPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   )
 }
 
